@@ -4,6 +4,19 @@
 
 {% block body %}
 
-<h1>Page d'accueil</h1>
+    <div class ="jumbotron"><h2>Actualités</h2>
+        <div class="card-columns">
+            {% for article in liste_articles_tries %}
+                <div class="card text-white bg-info" style="max-width: 20rem;">
+                    <div class="card-header">{{article.published|date('d/m/Y')}}</div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{article.titre}}</h4>
+                        <img class="card-img-bottom" src="{{article.img}}" alt="Card image cap">
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
