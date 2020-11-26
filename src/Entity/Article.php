@@ -37,10 +37,6 @@ class Article
      */
     private $published;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $img;
 
     public function getId(): ?int
     {
@@ -91,18 +87,6 @@ class Article
     public function setPublished(\DateTimeInterface $published): self
     {
         $this->published = $published;
-
-        return $this;
-    }
-
-    public function getImg(): ?string
-    {
-        return $this->img;
-    }
-
-    public function setImg(string $img): self
-    {
-        $this->img = $img;
 
         return $this;
     }

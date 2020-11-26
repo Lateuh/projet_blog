@@ -30,6 +30,26 @@ class ArticleRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    public function findOneById($id): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function findOneByUrl($url): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.url_alias = :url')
+            ->setParameter('url', $url)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
@@ -58,4 +78,6 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    
 }

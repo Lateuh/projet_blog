@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{nom_page}}{{id}}{% endblock %}
+
+{% block body %}
+    <div class ="jumbotron">
+        <h1 class="display-3">{{article.titre}}</h1>
+        <p>{{article.published|date('d/m/Y')}}</p>
+        <p class="lead">{{article.content}}</p>
+    </div>
+{% endblock %}

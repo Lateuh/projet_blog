@@ -11,32 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BlogController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function index(ArticleRepository $articleRepo): Response
-    {
-        $articles = $articleRepo->findAll();
-
-        $articlesTries = $articleRepo->findMostRecents();
-        return $this->render('blog/index.html.twig', [
-            'nom_page' => 'Accueil',
-            'liste_articles' => $articles,
-            'liste_articles_tries' => $articlesTries
-        ]);
-    }
-
-
-
-    /**
-     * @Route("/post/{id}", name="post")
-     */
-    public function post(int $id): Response
-    {
-        return $this->render('blog/post.html.twig', [
-            'id' => $id
-        ]);
-    }
+    
+    
 
 
     /**
@@ -51,6 +27,7 @@ class BlogController extends AbstractController
         $article->setPublished(new \Datetime());
         $article->setContent("Massinissa est mon ami, il est très gentil. Il recherche un stage en dev web pour pouvoir rester en France, sinon il doit rentrer dans son bled. Prenez le, c'est un boss !!!");
         $article->setUrlAlias('');
+        //$article->setImg("massiPhoto");
 
         $entityManager->persist($article);
 
