@@ -14,13 +14,13 @@ class IndexActionController extends AbstractController
      */
     public function index(ArticleRepository $articleRepo): Response
     {
-        $articles = $articleRepo->findAll();
+        /*$articles = $articleRepo->findAll();
 
-        $articlesTries = $articleRepo->findMostRecents();
+        $articlesTries = $articleRepo->findMostRecents();*/
         return $this->render('index_action/index.html.twig', [
-            'nom_page' => 'Accueil',
+            'nom_page' => 'Accueil'/*,
             'liste_articles' => $articles,
-            'liste_articles_tries' => $articlesTries
+            'liste_articles_tries' => $articlesTries*/
         ]);
     }
 
