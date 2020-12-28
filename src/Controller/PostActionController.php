@@ -36,6 +36,7 @@ class PostActionController extends AbstractController
             'nom_page' => 'Article n°',
             'id' => $url,
             'article' => $article
+            
         ]);
     }
 
