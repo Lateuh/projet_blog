@@ -1,39 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="{{path('homepage')}}">Blog</a>
+  <a class="navbar-brand" href="{{path('homepage')}}">Blog Alexy</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item border-left text-light">
         <a class="nav-link" href="{{path('homepage')}}">Accueil
-          <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+      <li class="nav-item border-left border-right text-light">
+        <a class="nav-link" href="{{path('create')}}">Créer Article</a>
       </li>
+      <!-- inutile actuellement
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
-      </li>
+      </li>-->
+      <!-- le dropdown ne fonctionne pas
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Article</a>
-        <div class="dropdown-menu">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">Article</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Voir</a>
           <a class="dropdown-item" href="#">Creer</a>
           <a class="dropdown-item" href="#">Something else here</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Separated link</a>
         </div>
-      </li>
+      </li>-->
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{{path('postIdSB')}}" method="POST">
-      <input class="form-control mr-sm-2" type="number" placeholder="Numero de l'article" name="url">
+      <input class="form-control mr-sm-2" type="text" placeholder="Titre de l'article" name="titre">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Chercher</button>
     </form>
+
+    <a href="{{path('app_login')}}"><button type="button" class="btn btn-info offset-1">Login</button></a>
   </div>
 </nav>

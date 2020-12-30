@@ -19,7 +19,7 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function findMostRecents($nombre = 10):array
+    public function findMostRecents($nombre = 12):array
     {
         $qb = $this->createQueryBuilder('a')
             ->orderBy('a.published', 'DESC');
@@ -40,15 +40,26 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findOneByUrl($url): ?Article
+    public function findOneByTitre($titre): ?Article
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.url_alias = :url')
-            ->setParameter('url', $url)
+            ->andWhere('a.titre = :titre')
+            ->setParameter('titre', $titre)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
+
+    public function findOneByAlias($alias): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.alias = :alias')
+            ->setParameter('alias', $alias)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 
     // /**
     //  * @return Article[] Returns an array of Article objects

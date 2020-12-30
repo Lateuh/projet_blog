@@ -6,15 +6,20 @@
 
     <div class ="jumbotron"><h2>Actualités</h2>
         <div class="card-columns">
-            {% for article in liste_articles_tries %}
-                <div class="card text-white bg-info" style="max-width: 20rem;">
-                    <div class="card-header">{{article.published|date('d/m/Y')}}</div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{article.titre}}</h4>
-                    </div>
-                    
-                </div>
-            {% endfor %}
+                {% for article in liste_articles_tries %}
+                    <a style="color:#FFFFFF" href="{{path('postTitre',{alias: article.alias})}}">
+                        <div class="card text-white bg-info border-right border-bottom" style="max-width: 20rem;">
+                            <div class="card-header">{{article.published|date('d/m/Y')}}</div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{article.titre}}</h4>
+                            </div>
+                            <div class="row card-footer">
+                                <div class="col-6 text-left"><a href="{{path('edit',{alias: article.alias})}}"><button class="btn btn-success">Modifier</button></a></div>
+                                <div class="col-6 text-right"><a href="{{path('delete',{alias: article.alias})}}"><button class="btn btn-danger">Supprimer</button></a></div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
         </div>
     </div>
 

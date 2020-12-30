@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -19,21 +21,25 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"titre"})
      */
-    private $url_alias;
+    private $alias;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $published;
 
@@ -55,14 +61,14 @@ class Article
         return $this;
     }
 
-    public function getUrlAlias(): ?string
+    public function getAlias(): ?string
     {
-        return $this->url_alias;
+        return $this->alias;
     }
 
-    public function setUrlAlias(string $url_alias): self
+    public function setAlias(string $alias): self
     {
-        $this->url_alias = $url_alias;
+        $this->alias = $alias;
 
         return $this;
     }

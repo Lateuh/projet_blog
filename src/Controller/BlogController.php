@@ -5,34 +5,73 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BlogController extends AbstractController
 {
-    
-    
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function index(ArticleRepository $articleRepo): Response
+    {
+        $articles = $articleRepo->findAll();
+
+        $articlesTries = $articleRepo->findMostRecents();
+        return $this->render('index_action/index.html.twig', [
+            'nom_page' => 'Accueil',
+            'liste_articles' => $articles,
+            'liste_articles_tries' => $articlesTries
+        ]);
+    }
 
 
     /**
-     * @Route("/creerpost", name="creer")
+     * @Route("/post/{id}", name="postId")
      */
-    public function createArticle(EntityManagerInterface $entityManager):Response
+    /*public function postId(ArticleRepository $articleRepo, int $id): Response
     {
-        //$entityManager = $this->getDoctrine()->getManager();
+        $article = $articleRepo->findOneById($id);
 
-        $article = new Article();
-        $article->setTitre('MASSI EST UN BOSS');
-        $article->setPublished(new \Datetime());
-        $article->setContent("Massinissa est mon ami, il est très gentil. Il recherche un stage en dev web pour pouvoir rester en France, sinon il doit rentrer dans son bled. Prenez le, c'est un boss !!!");
-        $article->setUrlAlias('');
-        //$article->setImg("massiPhoto");
+        return $this->render('post_action/post.html.twig', [
+            'nom_page' => 'Article',
+            'article' => $article
+        ]);
+    }*/
 
-        $entityManager->persist($article);
+    /**
+     * @Route("/post", name="postIdSB")
+     */
+    public function postIdSearchBar(Request $request, ArticleRepository $articleRepo): Response
+    {
+        $titre = $request->request->get('titre');
+        $article = $articleRepo->findOneByTitre($titre);
 
-        $entityManager->flush();
-
-        return new Response('Saved new article with titre : '.$article->getTitre());
+        return $this->render('post_action/post.html.twig', [
+            'nom_page' => 'Article',
+            'article' => $article
+        ]);
     }
+
+
+    /**
+     * @Route("/post/{alias}", name="postTitre")
+     */
+    public function postTitre(ArticleRepository $articleRepo, String $alias): Response
+    {
+        $article = $articleRepo->findOneByAlias($alias);
+
+        return $this->render('post_action/post.html.twig', [
+            'nom_page' => 'Article',
+            'article' => $article
+        ]);
+    }
+
+    
 }
