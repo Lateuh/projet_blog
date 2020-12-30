@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\User;
 use App\Entity\Article;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -21,6 +22,14 @@ class AppFixtures extends Fixture
 
             $manager->persist($article);
         }
+
+        $user = new User();
+        $user->setEmail('alexy.lefevre@gmail.com');
+        $user->setPassword('$argon2i$v=19$m=65536,t=4,p=1$V1RGNWY0eXR1SldLU0ouZw$jUFOBuFi1gqtjIgmMzFh0Dgs8x8cnW3IIs2gK8EyYJ4');
+        $user->setRoles(['ROLE_ADMIN']);
+
+        $manager->persist($user);
+
         $manager->flush();
     }
 }
