@@ -6,9 +6,17 @@ use App\Entity\User;
 use App\Entity\Article;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder){
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $faker = \Faker\Factory::create('fr_FR');
@@ -28,7 +36,10 @@ class AppFixtures extends Fixture
         // user admin
         $user = new User();
         $user->setEmail('alexy.lefevre@gmail.com');
-        $user->setPassword('$argon2i$v=19$m=65536,t=4,p=1$V1RGNWY0eXR1SldLU0ouZw$jUFOBuFi1gqtjIgmMzFh0Dgs8x8cnW3IIs2gK8EyYJ4');
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'azerty'
+        ));
         $user->setRoles(['ROLE_ADMIN']);
 
         $manager->persist($user);
@@ -37,13 +48,19 @@ class AppFixtures extends Fixture
         // users classiques
         $user = new User();
         $user->setEmail('matthieu.kowalczyk.um2@gmail.com');
-        $user->setPassword('$argon2i$v=19$m=65536,t=4,p=1$V1RGNWY0eXR1SldLU0ouZw$jUFOBuFi1gqtjIgmMzFh0Dgs8x8cnW3IIs2gK8EyYJ4');
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'azerty'
+        ));
 
         $manager->persist($user);
 
         $user = new User();
         $user->setEmail('nathan.levy.um2@gmail.com');
-        $user->setPassword('$argon2i$v=19$m=65536,t=4,p=1$V1RGNWY0eXR1SldLU0ouZw$jUFOBuFi1gqtjIgmMzFh0Dgs8x8cnW3IIs2gK8EyYJ4');
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'azerty'
+        ));
 
         $manager->persist($user);
 
