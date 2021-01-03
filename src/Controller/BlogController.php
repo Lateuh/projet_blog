@@ -33,19 +33,6 @@ class BlogController extends AbstractController
 
 
     /**
-     * @Route("/post/{id}", name="postId")
-     */
-    /*public function postId(ArticleRepository $articleRepo, int $id): Response
-    {
-        $article = $articleRepo->findOneById($id);
-
-        return $this->render('post_action/post.html.twig', [
-            'nom_page' => 'Article',
-            'article' => $article
-        ]);
-    }*/
-
-    /**
      * @Route("/post", name="postIdSB")
      */
     public function postIdSearchBar(Request $request, ArticleRepository $articleRepo): Response
