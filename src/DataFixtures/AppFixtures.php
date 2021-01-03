@@ -36,10 +36,7 @@ class AppFixtures extends Fixture
         // user admin
         $user = new User();
         $user->setEmail('alexy.lefevre@gmail.com');
-        $user->setPassword($this->passwordEncoder->encodePassword(
-            $user,
-            'azerty'
-        ));
+        $user->setPassword('$argon2i$v=19$m=65536,t=4,p=1$NTE2TWZLTGV2RGF6dEhkYQ$zka8z2BBj+P2LGuxrW4poDmFWT7B3wFlwEc0w6c7W+g');
         $user->setRoles(['ROLE_ADMIN']);
 
         $manager->persist($user);
@@ -48,19 +45,13 @@ class AppFixtures extends Fixture
         // users classiques
         $user = new User();
         $user->setEmail('matthieu.kowalczyk.um2@gmail.com');
-        $user->setPassword($this->passwordEncoder->encodePassword(
-            $user,
-            'azerty'
-        ));
+        $user->setPassword('$argon2i$v=19$m=65536,t=4,p=1$NTE2TWZLTGV2RGF6dEhkYQ$zka8z2BBj+P2LGuxrW4poDmFWT7B3wFlwEc0w6c7W+g');
 
         $manager->persist($user);
 
         $user = new User();
         $user->setEmail('nathan.levy.um2@gmail.com');
-        $user->setPassword($this->passwordEncoder->encodePassword(
-            $user,
-            'azerty'
-        ));
+        $user->setPassword('$argon2i$v=19$m=65536,t=4,p=1$NTE2TWZLTGV2RGF6dEhkYQ$zka8z2BBj+P2LGuxrW4poDmFWT7B3wFlwEc0w6c7W+g');
 
         $manager->persist($user);
 
