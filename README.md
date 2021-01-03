@@ -6,9 +6,9 @@ Bonjour, je vous laisse le lien vers mon blog déployé sur heroku :
 lien heroku : https://lefevre-blog.herokuapp.com/
 
 3 comptes utilisateurs sont en base (username / password) :
-admin : alexy.lefevre@gmail.com / azerty
-simple : matthieu.kowalczyk.um2@gmail.com / azerty
-simple : nathan.levy.um2@gmail.com / azerty
+- admin : alexy.lefevre@gmail.com / azerty
+- simple : matthieu.kowalczyk.um2@gmail.com / azerty
+- simple : nathan.levy.um2@gmail.com / azerty
 
 Les comptes “simple” peuvent seulement visionner le contenu des articles, seul le compte “admin” peut create/update/delete.
 
