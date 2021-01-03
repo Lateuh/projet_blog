@@ -16,11 +16,11 @@ class SerializationService
 
         foreach ($articles as $article ) {
             $serialized []= [
-                'id' => $meme->getId(),
-                'title' => $meme->getTitre(),
-                'slug' => $meme->getAlias(),
-                'content' => $meme->getContent(),
-                'published' => $meme->getPublished(),
+                'id' => $article->getId(),
+                'title' => $article->getTitre(),
+                'slug' => $article->getAlias(),
+                'content' => $article->getContent(),
+                'published' => $article->getPublished(),
             ];
         }
 
